@@ -1,0 +1,77 @@
+<h1>Ciudad</h1>
+
+<section class="insert" method="post">
+	<h3>Insertar</h3>
+	<form action="/insertC" method="post">
+        <div class="input">
+            <label for="pais">Pais</label>
+            <input type="text" id="pais" name="pais">
+        </div>
+        <div class="input">
+            <label for="depto">Departamento</label>
+            <input type="text" id="depto" name="depto">
+        </div>
+        <div class="input">
+            <label for="ciudad">Ciudad</label>
+            <input type="text" id="ciudad" name="ciudad">
+        </div>
+        <button type="submit">Insertar</button>
+    </form>
+</section>
+
+<section class="get">
+    <h3>Leer</h3>
+    <a href="/get-dataC">Leer</a>
+    <div>
+        {{# each items }}
+            <article class="item">
+                <div>Pais: {{ this.pais }}</div>
+                <div>Departamento: {{ this.depto }}</div>
+                <div>Ciudad: {{ this.ciudad }}</div>
+                <div>ID: {{ this._id }}</div>
+            </article>
+        {{/each}}
+    </div>
+</section>
+
+<section class="update">
+    <h3>Actualizar</h3>
+    <form action="/updateC" method="post">
+        <div class="input">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id">
+        </div>
+        <div class="input">
+            <label for="paisU">Pais</label>
+            <input type="text" id="paisU" name="paisU">
+        </div>
+        <div class="input">
+            <label for="deptoU">Departamento</label>
+            <input type="text" id="deptoU" name="deptoU">
+        </div>
+        <div class="input">
+            <label for="ciudadU">Ciudad</label>
+            <input type="text" id="ciudadU" name="ciudadU">
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+</section>
+
+<section class="delete">
+    <h3>Borrar</h3>
+    <form action="/deleteC" method="post">
+        <div class="input">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id">
+        </div>
+        <button type="submit">Borrar</button>
+    </form>
+</section>
+
+<button name="back" id="back">Atrás</button>
+
+<script type="text/javascript">
+    document.getElementById("back").onclick = function () {
+        location.href = "./";
+    };
+</script>

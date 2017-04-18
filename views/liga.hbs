@@ -1,0 +1,68 @@
+<h1>Liga</h1>
+
+<section class="insert" method="post">
+	<h3>Insertar</h3>
+	<form action="/insertL" method="post">
+        <div class="input">
+            <label for="nombreL">Nombre</label>
+            <input type="text" id="nombreL" name="nombreL">
+        </div>
+        <div class="input">
+            <label for="paisL">Pais</label>
+            <input type="text" id="paisL" name="paisL">
+        </div>
+        <button type="submit">Insertar</button>
+    </form>
+</section>
+
+<section class="get">
+    <h3>Leer</h3>
+    <a href="/get-dataL">Leer</a>
+    <div>
+        {{# each items }}
+            <article class="item">
+                <div>Nombre: {{ this.nombre }}</div>
+                <div>Pais:: {{ this.pais }}</div>
+                <div>ID: {{ this._id }}</div>
+            </article>
+        {{/each}}
+    </div>
+</section>
+
+<section class="update">
+    <h3>Actualizar</h3>
+    <form action="/updateL" method="post">
+        <div class="input">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id">
+        </div>
+        <div class="input">
+            <label for="nombreUL">Nombre</label>
+            <input type="text" id="nombreUL" name="nombreUL">
+        </div>
+        <div class="input">
+            <label for="paisUL">Pais</label>
+            <input type="text" id="paisUL" name="paisUL">
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+</section>
+
+<section class="delete">
+    <h3>Borrar</h3>
+    <form action="/deleteL" method="post">
+        <div class="input">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id">
+        </div>
+        <button type="submit">Borrar</button>
+    </form>
+</section>
+
+<button name="back" id="back">Atrás</button>
+
+<script type="text/javascript">
+    document.getElementById("back").onclick = function () {
+        location.href = "./";
+    };
+</script>

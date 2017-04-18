@@ -1,0 +1,86 @@
+<h1>Jugador</h1>
+<!--Jugador, Equipo, Liga-->
+<section class="insert">
+    <h3>Insertar</h3>
+    <form action="/insert" method="post">
+        <div class="input">
+            <label for="nombreJugador">Nombre</label>
+            <input type="text" id="nombreJugador" name="nombreJugador">
+        </div>
+        <div class="input">
+            <label for="piernaPreferida">Pierna preferida</label>
+            <input type="text" id="piernaPreferida" name="piernaPreferida">
+        </div>
+        <div class="input">
+            <label for="fechaNacimiento">Fecha Nacimiento</label>
+            <input type="text" id="fechaNacimiento" name="fechaNacimiento">
+        </div>
+        <div class="input">
+            <label for="ciudadJ">Ciudad</label>
+            <input type="text" id="ciudadJ" name="ciudadJ">
+        </div>
+        <button type="submit">Insertar</button>
+    </form>
+</section>
+
+<section class="get">
+    <h3>Leer</h3>
+    <a href="/get-data">Leer</a>
+    <div>
+        {{# each items }}
+            <article class="item">
+                <div>Nombre: {{ this.nombre }}</div>
+                <div>Pierna Preferida: {{ this.piernaPreferida }}</div>
+                <div>Fecha nacimiento: {{ this.fechaNacimiento }}</div>
+                <div>ID Ciudad: {{this.ciudad}}</div>
+                <div>ID: {{ this._id }}</div>
+            </article>
+        {{/each}}
+    </div>
+</section>
+
+<section class="update">
+    <h3>Actualizar</h3>
+    <form action="/update" method="post">
+        <div class="input">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id">
+        </div>
+        <div class="input">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre">
+        </div>
+        <div class="input">
+            <label for="piernaPreferidaU">Pierna Preferida</label>
+            <input type="text" id="piernaPreferidaU" name="piernaPreferidaU">
+        </div>
+        <div class="input">
+            <label for="fechaNacimientoU">Fecha nacimiento</label>
+            <input type="text" id="fechaNacimientoU" name="fechaNacimientoU">
+        </div>
+        <div class="input">
+            <label for="idCiudad">ID Ciudad</label>
+            <input type="text" id="idCiudad" name="idCiudad">
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+</section>
+
+<section class="delete">
+    <h3>Borrar</h3>
+    <form action="/delete" method="post">
+        <div class="input">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id">
+        </div>
+        <button type="submit">Borrar</button>
+    </form>
+</section>
+
+<button name="back" id="back">Atrás</button>
+
+<script type="text/javascript">
+    document.getElementById("back").onclick = function () {
+        location.href = "./";
+    };
+</script>

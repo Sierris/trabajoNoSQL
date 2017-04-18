@@ -1,0 +1,77 @@
+<h1>Equipo</h1>
+<!--Jugador, Equipo, Liga-->
+<section class="insert">
+    <h3>Insertar</h3>
+    <form action="/insertE" method="post">
+        <div class="input">
+            <label for="nombreEstadio">Nombre</label>
+            <input type="text" id="nombreE" name="nombreE">
+        </div>
+        <div class="input">
+            <label for="liga">Liga</label>
+            <input type="text" id="liga" name="liga">
+        </div>
+        <div class="input">
+            <label for="estadio">Estadio</label>
+            <input type="text" id="estadio" name="estadio">
+        </div>
+        <button type="submit">Insertar</button>
+    </form>
+</section>
+
+<section class="get">
+    <h3>Leer</h3>
+    <a href="/get-dataE">Leer</a>
+    <div>
+        {{# each items }}
+            <article class="item">
+                <div>Nombre: {{ this.nombre }}</div>
+                <div>Liga: {{ this.liga }}</div>
+                <div>Estadio: {{ this.estadio }}</div>
+                <div>ID: {{ this._id }}</div>
+            </article>
+        {{/each}}
+    </div>
+</section>
+
+<section class="update">
+    <h3>Actualizar</h3>
+    <form action="/updateE" method="post">
+        <div class="input">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id">
+        </div>
+        <div class="input">
+            <label for="nombreEstadio">Nombre</label>
+            <input type="text" id="nombreEU" name="nombreEU">
+        </div>
+        <div class="input">
+            <label for="liga">Liga</label>
+            <input type="text" id="ligaU" name="ligaU">
+        </div>
+        <div class="input">
+            <label for="estadio">Estadio</label>
+            <input type="text" id="estadioU" name="estadioU">
+        </div>
+        <button type="submit">Actualizar</button>
+    </form>
+</section>
+
+<section class="delete">
+    <h3>Borrar</h3>
+    <form action="/deleteE" method="post">
+        <div class="input">
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id">
+        </div>
+        <button type="submit">Borrar</button>
+    </form>
+</section>
+
+<button name="back" id="back">Atrás</button>
+
+<script type="text/javascript">
+    document.getElementById("back").onclick = function () {
+        location.href = "./";
+    };
+</script>
