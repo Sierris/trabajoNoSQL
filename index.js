@@ -21,10 +21,22 @@ router.get('/jugador', function(req, res, next){
 });
 
 //CRUD jugador
-router.get('/get-data', function(req,res, ext){
-	Jugador.find().then(function(doc) {
-		res.render('jugador', {items: doc});
-	});
+router.post('/get-data', function(req,res, ext){
+
+	var buscar = req.body.buscarJ;
+	console.log("Buscar " + buscar);
+
+	if(buscar == ""){
+		Jugador.find().then(function(doc) {
+			console.log(doc)
+			res.render('jugador', {items: doc});
+		});
+	}else{
+		Jugador.findOne({'nombre': buscar}).exec(function(err,jugador) {
+			console.log("Jugador " + jugador);
+			res.render('jugador', {items: jugador});
+		});
+	}
 });
 
 router.post('/insert', function(req, res, next) {
@@ -36,7 +48,7 @@ router.post('/insert', function(req, res, next) {
        console.log(err);
      }else{
        if(ciudad != null){
-         console.log(ciudad._id);
+        // console.log(ciudad._id);
 
          var item = {
        		nombre: req.body.nombreJugador,
@@ -165,12 +177,13 @@ router.post('/updateL', function(req, res, next) {
 
 	Liga.findById(id, function(err, doc){
 		if(err){
-			console.log('No entry found');
-		}
+			console.log(err)
+		}else{
 
 		doc.nombre = req.body.nombreUL;
 		doc.pais = req.body.paisUL;
 		doc.save();
+		}	
 	});
 
 	res.redirect('/liga');
@@ -206,7 +219,7 @@ router.post('/insertE', function(req, res, next) {
        		console.log(err);
      	}else{
        		if(liga != null){
-         		console.log(liga._id);
+         		//console.log(liga._id);
 
          		var item = {
        				nombre: req.body.nombreE,
@@ -214,7 +227,7 @@ router.post('/insertE', function(req, res, next) {
        				estadio: req.body.estadio
           		};
 
-          		console.log(item);
+          		//console.log(item);
 
           	var data = new Equipo(item);
           	data.save().then(function(us){
@@ -232,15 +245,15 @@ router.post('/updateE', function(req, res, next) {
 	var id = req.body.id;
 
 	Equipo.findById(id, function(err, doc){
-		console.log(doc);
+		//console.log(doc);
 		if(err){
 			console.log('No entry found');
-		}
-
+		}else{
 		doc.nombre = req.body.nombreEU;
 		doc.liga = req.body.ligaU;
 		doc.estadio = req.body.estadioU;
 		doc.save();
+		}
 	});
 	res.redirect('/equipo');
 });
