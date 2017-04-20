@@ -26,8 +26,8 @@ router.post('/get-data', function(req,res, next){
 	var buscar = req.body.buscarJ;
 	console.log("Buscar " + buscar);
 
-	if(buscar == ""){
-		Jugador.find().then(function(doc) {
+	if(buscar == "" || buscar == null){
+		Jugador.find().populate('ciudad').then(function(doc) {
 			console.log("All " + doc)
 			res.render('jugador', {items: doc});
 		});
@@ -239,7 +239,7 @@ router.post('/get-dataE', function(req,res, ext){
 	//console.log("Buscar " + buscar);
 
 	if(buscar == ""){
-		Equipo.find().then(function(doc) {
+		Equipo.find().populate('liga').then(function(doc) {
 			//console.log(doc)
 			res.render('equipo', {items: doc});
 		});
