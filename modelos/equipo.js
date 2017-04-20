@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var equipoSchema = new Schema({
 //Schema que define el jugador
 	nombre: {type: String, required: [true, "campo requerido"]},
-	liga: {type: Schema.Types.ObjectId, ref: 'liga'},
+	liga: {type: Schema.Types.ObjectId, ref: 'Liga'},
 	estadio: String,
 	
 });

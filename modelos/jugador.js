@@ -7,11 +7,10 @@ var jugadorSchema = new Schema({
 	piernaPreferida: {type: String, required: [true, "campo requerido"]},
 	fechaNacimiento: String,
 	
-	ciudad: {type: Schema.Types.ObjectId, ref: 'ciudad'}
+	ciudad: {type: Schema.Types.ObjectId, ref: "Ciudad"}
 
 });
 //se define la forma del objeto que entra en mongo
-//el último parámetro se refiere a qué coleccion
 
 var Jugador = mongoose.model("Jugador", jugadorSchema);
 

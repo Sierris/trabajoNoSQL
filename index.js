@@ -21,27 +21,33 @@ router.get('/jugador', function(req, res, next){
 });
 
 //CRUD jugador
-router.post('/get-data', function(req,res, ext){
+router.post('/get-data', function(req,res, next){
 
 	var buscar = req.body.buscarJ;
 	console.log("Buscar " + buscar);
 
 	if(buscar == ""){
 		Jugador.find().then(function(doc) {
-			console.log(doc)
+			console.log("All " + doc)
 			res.render('jugador', {items: doc});
 		});
 	}else{
-		Jugador.find({'nombre': buscar}).exec(function(err,jugador) {
-			console.log("Jugador " + jugador);
-			res.render('jugador', {items: jugador});
+		Jugador.findOne({'nombre': buscar}).populate("ciudad").exec(function(err,jugador) {
+			//Ciudad.findOne({'_id': jugador.ciudad._id}).exec(function(err,ciudad){			
+				if(err){
+					console.log(err);
+				}else{
+					res.render('jugador', {items: jugador});
+				}
+			//});
 		});
+
 	}
 });
 
 router.post('/insert', function(req, res, next) {
 
-	var busqueda = req.body.ciudadJ;
+  var busqueda = req.body.ciudadJ;
 
   Ciudad.findOne({'ciudad': busqueda}).exec(function(err,ciudad){
      if(err){
@@ -238,8 +244,8 @@ router.post('/get-dataE', function(req,res, ext){
 			res.render('equipo', {items: doc});
 		});
 	}else{
-		Equipo.find({'nombre': buscar}).exec(function(err,equipo) {
-			console.log("Equipo " + equipo);
+		Equipo.find({'nombre': buscar}).populate("liga").exec(function(err,equipo) {
+			//console.log("Equipo " + equipo);
 			res.render('equipo', {items: equipo});
 		});
 	}
