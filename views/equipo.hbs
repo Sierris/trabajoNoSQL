@@ -20,16 +20,29 @@
 </section>
 
 <section class="get">
-    <h3>Leer</h3>
-    <a href="/get-dataE">Leer</a>
+    <h3>Leer</h3> 
+    <form action="/get-dataE" method="post">
+        <div class="input">
+            <label for="buscarE">Nombre equipo</label>
+            <input type="text" id="buscarE" name="buscarE">
+        </div>
+    <button type="submit" id="buscar">Buscar</button>
+    </form>
+        
     <div>
         {{# each items }}
+
+            {{# if this.nombre }}
             <article class="item">
                 <div>Nombre: {{ this.nombre }}</div>
                 <div>Liga: {{ this.liga }}</div>
                 <div>Estadio: {{ this.estadio }}</div>
                 <div>ID: {{ this._id }}</div>
             </article>
+            {{ else }}
+                
+            {{/if}}
+           
         {{/each}}
     </div>
 </section>
